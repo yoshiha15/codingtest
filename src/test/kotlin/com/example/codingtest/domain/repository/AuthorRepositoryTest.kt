@@ -38,4 +38,35 @@ class AuthorRepositoryTest {
         assertEquals("著者2", actual2.getValue(Author.AUTHOR.NAME))
         assertEquals("19741108", actual2.getValue(Author.AUTHOR.BIRTHDAY))
     }
+
+    /**
+     * AuthorRepositoryImpl.insertAuthor テストコード
+     */
+    @Test
+    fun insertAuthorTest() {
+        // 著者3
+        authorRepositoryImpl.insertAuthor("著者3", "20001212")
+
+        val actual: Record = authorRepositoryImpl.getAuthor(3)
+
+        assertEquals(3, actual.getValue(Author.AUTHOR.ID))
+        assertEquals("著者3", actual.getValue(Author.AUTHOR.NAME))
+        assertEquals("20001212", actual.getValue(Author.AUTHOR.BIRTHDAY))
+    }
+
+    /**
+     * AuthorRepositoryImpl.updateAuthor テストコード
+     */
+    @Test
+    fun updateAuthorTest() {
+
+        // 著者2
+        authorRepositoryImpl.updateAuthor(2, "著者4", "19930101")
+
+        val actual: Record = authorRepositoryImpl.getAuthor(2)
+
+        assertEquals(2, actual.getValue(Author.AUTHOR.ID))
+        assertEquals("著者4", actual.getValue(Author.AUTHOR.NAME))
+        assertEquals("19930101", actual.getValue(Author.AUTHOR.BIRTHDAY))
+    }
 }

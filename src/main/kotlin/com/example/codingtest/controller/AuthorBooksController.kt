@@ -1,6 +1,6 @@
 package com.example.codingtest.controller
 
-import com.example.codingtest.domain.model.AuthorBookResponse
+import com.example.codingtest.domain.model.AuthorBookGetResponse
 import com.example.codingtest.domain.service.AuthorBooksService
 import com.example.codingtest.domain.tables.*
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,9 +19,9 @@ class AuthorBooksController {
      * ※課題範囲外だがDBから取得・更新に必要なidを取得するために実装
      */
     @GetMapping("/author-books")
-    fun authorBooks(): List<AuthorBookResponse>  {
+    fun authorBooks(): List<AuthorBookGetResponse>  {
         return authorBooksService.getAuthorBooks().map {
-            AuthorBookResponse(
+            AuthorBookGetResponse(
                 authorId = it.getValue(Author.AUTHOR.ID),
                 name = it.getValue(Author.AUTHOR.NAME),
                 birthday = it.getValue(Author.AUTHOR.BIRTHDAY),
