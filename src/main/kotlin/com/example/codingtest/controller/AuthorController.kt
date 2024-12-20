@@ -1,8 +1,8 @@
 package com.example.codingtest.controller
 
-import com.example.codingtest.domain.model.AuthorGetResponse
-import com.example.codingtest.domain.model.AuthorInsertRequest
-import com.example.codingtest.domain.model.AuthorUpdateRequest
+import com.example.codingtest.domain.model.response.GetAuthorResponse
+import com.example.codingtest.domain.model.request.InsertAuthorRequest
+import com.example.codingtest.domain.model.request.UpdateAuthorRequest
 import com.example.codingtest.domain.service.AuthorService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
@@ -16,13 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class AuthorController {
-
-    @Autowired
-    lateinit var authorService: AuthorService
+class AuthorController(
+    private val authorService: AuthorService
+) {
 
     @GetMapping("/author/{id}")
-    fun getAuthor(@PathVariable("id") id: Int): ResponseEntity<AuthorGetResponse>{
+    fun getAuthor(@PathVariable("id") id: Int): ResponseEntity<GetAuthorResponse>{
 
         // パスパラメータに指定した著者IDが1以下であればエラー
         if (id < 1) {
@@ -42,7 +41,7 @@ class AuthorController {
      * 著者登録
      */
     @PostMapping("/author")
-    fun insertAuthor(@RequestBody @Validated authorInsertRequest: AuthorInsertRequest, bindingResult: BindingResult): ResponseEntity<Unit>  {
+    fun insertAuthor(@RequestBody @Validated insertAuthorRequest: InsertAuthorRequest, bindingResult: BindingResult): ResponseEntity<Unit>  {
 
         // バリデーションチェックエラー
         if (bindingResult.hasErrors()) {
@@ -52,7 +51,7 @@ class AuthorController {
 
         return try {
             // 著者登録
-            authorService.insertAuthor(authorInsertRequest)
+            authorService.insertAuthor(insertAuthorRequest)
             return ResponseEntity.ok().build()
         } catch (e: Exception) {
             // http status 500
@@ -64,7 +63,7 @@ class AuthorController {
      * 著者更新
      */
     @PatchMapping("/author")
-    fun updateAuthor(@RequestBody @Validated authorUpdateRequest: AuthorUpdateRequest, bindingResult: BindingResult): ResponseEntity<Unit> {
+    fun updateAuthor(@RequestBody @Validated updateAuthorRequest: UpdateAuthorRequest, bindingResult: BindingResult): ResponseEntity<Unit> {
         // バリデーションチェックエラー
         if (bindingResult.hasErrors()) {
             // http status 400
@@ -73,7 +72,7 @@ class AuthorController {
 
         return try {
             // 著者更新
-            authorService.updateAuthor(authorUpdateRequest)
+            authorService.updateAuthor(updateAuthorRequest)
             return ResponseEntity.ok().build()
         } catch (e: Exception) {
             // http status 500

@@ -1,21 +1,21 @@
 package com.example.codingtest.domain.repository
 
-import com.example.codingtest.domain.tables.Author
-import com.example.codingtest.domain.tables.AuthorBooks
-import com.example.codingtest.domain.tables.Book
+import com.example.codingtest.domain.model.dto.AuthorBooksDto
+import com.example.codingtest.domain.jooq.tables.Author
+import com.example.codingtest.domain.jooq.tables.AuthorBooks
+import com.example.codingtest.domain.jooq.tables.Book
 import org.jooq.DSLContext
 import org.jooq.Record
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
 @Repository
-class AuthorBooksRepositoryImpl: AuthorBooksRepository {
+class AuthorBooksRepositoryImpl(
+    private val dslContext: DSLContext
+): AuthorBooksRepository {
 
-    @Autowired
-    lateinit var dslContext: DSLContext
-
-    override fun getAuthorBooks(): List<Record> {
-        return dslContext.select(
+    override fun getAuthorBooks(): List<AuthorBooksDto> {
+        val result: List<Record> =dslContext.select(
             AuthorBooks.AUTHOR_BOOKS.AUTHOR_ID,
             AuthorBooks.AUTHOR_BOOKS.BOOK_ID,
             Author.AUTHOR.NAME,
@@ -26,22 +26,42 @@ class AuthorBooksRepositoryImpl: AuthorBooksRepository {
         )
             .from(AuthorBooks.AUTHOR_BOOKS)
             .leftJoin(Author.AUTHOR)
-            .on(AuthorBooks.AUTHOR_BOOKS.AUTHOR_ID.eq(Author.AUTHOR.ID))
+            .on(
+                AuthorBooks.AUTHOR_BOOKS.AUTHOR_ID.eq(
+                    Author.AUTHOR.ID))
             .leftJoin(Book.BOOK)
-            .on(AuthorBooks.AUTHOR_BOOKS.BOOK_ID.eq(Book.BOOK.ID))
+            .on(
+                AuthorBooks.AUTHOR_BOOKS.BOOK_ID.eq(
+                    Book.BOOK.ID))
             .orderBy(AuthorBooks.AUTHOR_BOOKS.AUTHOR_ID, AuthorBooks.AUTHOR_BOOKS.BOOK_ID)
             .toList()
+
+        return result.map {
+            AuthorBooksDto(
+                authorId = it.getValue(AuthorBooks.AUTHOR_BOOKS.AUTHOR_ID),
+                name = it.getValue(Author.AUTHOR.NAME),
+                birthday = it.getValue(Author.AUTHOR.BIRTHDAY),
+                bookId = it.getValue(AuthorBooks.AUTHOR_BOOKS.BOOK_ID),
+                title = it.getValue(Book.BOOK.TITLE),
+                price = it.getValue(Book.BOOK.PRICE),
+                publish = it.getValue(Book.BOOK.PUBLISH)
+            )
+        }
+
+
     }
 
-    override fun getBookIds(authorId: Int): List<Record>{
+    override fun getBookIds(authorId: Int): List<Int>{
         return dslContext.select(AuthorBooks.AUTHOR_BOOKS.BOOK_ID)
             .from(AuthorBooks.AUTHOR_BOOKS)
             .where(AuthorBooks.AUTHOR_BOOKS.AUTHOR_ID.eq(authorId))
             .toList()
+            .map {  it.getValue(AuthorBooks.AUTHOR_BOOKS.BOOK_ID) }
     }
 
     override fun insertAuthorBooks(authorId: Int, bookId: Int) {
-        dslContext.insertInto(AuthorBooks.AUTHOR_BOOKS,
+        dslContext.insertInto(
+            AuthorBooks.AUTHOR_BOOKS,
             AuthorBooks.AUTHOR_BOOKS.AUTHOR_ID,
             AuthorBooks.AUTHOR_BOOKS.BOOK_ID,
             ).values(authorId, bookId)

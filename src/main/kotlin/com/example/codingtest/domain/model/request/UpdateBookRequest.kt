@@ -1,11 +1,13 @@
-package com.example.codingtest.domain.model
+package com.example.codingtest.domain.model.request
 
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.Size
 
 
-data class BookInsertRequest(
+data class UpdateBookRequest(
+    @field:Min(1)
+    val id: Int,
     @field:NotEmpty
     val title: String,
     @field:Min(0)
@@ -15,4 +17,3 @@ data class BookInsertRequest(
     @field:NotEmpty
     val authorIds: List<Int>
 )
-

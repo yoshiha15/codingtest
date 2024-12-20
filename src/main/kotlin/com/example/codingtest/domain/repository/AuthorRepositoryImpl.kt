@@ -1,6 +1,8 @@
 package com.example.codingtest.domain.repository
 
-import com.example.codingtest.domain.tables.Author
+import com.example.codingtest.domain.jooq.tables.Author
+import com.example.codingtest.domain.model.dto.AuthorDto
+import com.example.codingtest.domain.model.dto.BookDto
 import com.example.codingtest.util.DateUtils
 import org.jooq.DSLContext
 import org.jooq.Record
@@ -8,13 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
 @Repository
-class AuthorRepositoryImpl: AuthorRepository {
+class AuthorRepositoryImpl(
+    private val dslContext: DSLContext
+): AuthorRepository {
 
-    @Autowired
-    lateinit var dslContext: DSLContext
-
-    override fun getAuthor(authorId: Int): Record {
-        return dslContext.select(
+    override fun getAuthor(authorId: Int): AuthorDto {
+        val result: Record = dslContext.select(
             Author.AUTHOR.ID,
             Author.AUTHOR.NAME,
             Author.AUTHOR.BIRTHDAY
@@ -22,6 +23,14 @@ class AuthorRepositoryImpl: AuthorRepository {
             .from(Author.AUTHOR)
             .where(Author.AUTHOR.ID.eq(authorId))
             .fetchSingle()
+
+        return result.map {
+            AuthorDto(
+                authorId = it.getValue(Author.AUTHOR.ID),
+                name = it.getValue(Author.AUTHOR.NAME),
+                birthday = it.getValue(Author.AUTHOR.BIRTHDAY)
+            )
+        }
     }
 
     override fun insertAuthor(name: String, birthday: String){
@@ -30,7 +39,8 @@ class AuthorRepositoryImpl: AuthorRepository {
         val nowDateTime: String = DateUtils.nowDateTime()
 
         dslContext
-            .insertInto(Author.AUTHOR,
+            .insertInto(
+                Author.AUTHOR,
                 Author.AUTHOR.NAME,
                 Author.AUTHOR.BIRTHDAY,
                 Author.AUTHOR.UPDATED,

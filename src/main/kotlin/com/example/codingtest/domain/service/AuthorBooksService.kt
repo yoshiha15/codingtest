@@ -1,8 +1,8 @@
 package com.example.codingtest.domain.service
 
-import org.jooq.Record
+import com.example.codingtest.domain.model.dto.AuthorBooksDto
 
 interface AuthorBooksService {
 
-    fun getAuthorBooks(): List<Record>;
+    fun getAuthorBooks(): List<AuthorBooksDto>;
 }
