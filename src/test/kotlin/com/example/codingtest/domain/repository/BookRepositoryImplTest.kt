@@ -2,9 +2,7 @@ package com.example.codingtest.domain.repository
 
 import com.example.codingtest.config.TestContainersConfiguration
 import com.example.codingtest.domain.exception.InvalidPublishUpdatedException
-import com.example.codingtest.domain.jooq.tables.Book
 import com.example.codingtest.domain.model.dto.BookDto
-import org.jooq.Record
 import org.springframework.boot.test.autoconfigure.jooq.JooqTest
 import org.springframework.context.annotation.Import
 import org.springframework.test.context.jdbc.Sql
@@ -16,7 +14,7 @@ import kotlin.test.assertEquals
 @Import(TestContainersConfiguration::class, BookRepositoryImpl::class)
 @JooqTest
 @Sql("/test-data.sql")
-class BookDtoRepositoryImplTest {
+class BookRepositoryImplTest {
 
     @Autowired
     lateinit var bookRepositoryImpl: BookRepositoryImpl
