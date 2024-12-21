@@ -71,4 +71,28 @@ class AuthorBooksRepositoryImplTest {
         assertEquals(2, actual[1])
     }
 
+    @Test
+    fun test_insertAuthorBooks() {
+
+        authorBooksRepositoryImpl.insertAuthorBooks(1, 4)
+    }
+
+    @Test
+    fun test_deleteAuthorBooks() {
+
+        authorBooksRepositoryImpl.deleteAuthorBooks(1)
+
+        val actual1: List<Int> = authorBooksRepositoryImpl.getBookIds(1)
+
+        // 件数
+        assertEquals(1, actual1.size)
+        // 書籍ID
+        assertEquals(2, actual1[0])
+
+        val actual2: List<Int> = authorBooksRepositoryImpl.getBookIds(3)
+
+        // 件数
+        assertEquals(0, actual2.size)
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.example.codingtest.config
+package com.example.codingtest.common.config
 
 import org.jooq.DSLContext
 import org.springframework.context.annotation.Bean

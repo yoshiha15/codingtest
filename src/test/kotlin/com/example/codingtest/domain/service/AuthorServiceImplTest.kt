@@ -34,7 +34,7 @@ class AuthorServiceImplTest{
      * authorServiceImpl.getAuthor テストコード
      */
     @Test
-    fun test_getAuthor(){
+    fun test_getAuthor() {
 
         whenever(authorRepository.getAuthor(1)).thenReturn(
             AuthorDto(

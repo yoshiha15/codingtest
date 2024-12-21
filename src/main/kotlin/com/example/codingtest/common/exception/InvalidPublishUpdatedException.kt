@@ -1,3 +1,3 @@
-package com.example.codingtest.domain.exception
+package com.example.codingtest.common.exception
 
 class InvalidPublishUpdatedException: RuntimeException() {}

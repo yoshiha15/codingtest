@@ -1,6 +1,7 @@
 package com.example.codingtest.domain.model.request
 
-import com.example.codingtest.util.DateUtils
+import com.example.codingtest.common.util.DateUtils
+import com.example.codingtest.common.validator.PastDate
 import jakarta.validation.constraints.AssertTrue
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotEmpty
@@ -13,11 +14,6 @@ data class UpdateAuthorRequest(
     @field:NotEmpty
     val name: String,
     @field:Size(min=8, max=8)
+    @field:PastDate
     val birthday: String,
-) {
-    // 誕生日が現在日付移行の場合エラー
-    @AssertTrue
-    fun isBefore(): Boolean {
-        return java.lang.Long.valueOf(birthday) < java.lang.Long.valueOf(DateUtils.nowDate())
-    }
-}
+)

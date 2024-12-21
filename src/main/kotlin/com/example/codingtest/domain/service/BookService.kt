@@ -6,5 +6,6 @@ import com.example.codingtest.domain.model.request.UpdateBookRequest
 
 interface BookService {
     fun insertBook(insertBookRequest: InsertBookRequest)
+
     fun updateBook(bookUpdateRequest: UpdateBookRequest)
 }

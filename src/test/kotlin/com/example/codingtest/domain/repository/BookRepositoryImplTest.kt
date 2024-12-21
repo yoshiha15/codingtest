@@ -1,7 +1,7 @@
 package com.example.codingtest.domain.repository
 
 import com.example.codingtest.config.TestContainersConfiguration
-import com.example.codingtest.domain.exception.InvalidPublishUpdatedException
+import com.example.codingtest.common.exception.InvalidPublishUpdatedException
 import com.example.codingtest.domain.model.dto.BookDto
 import org.springframework.boot.test.autoconfigure.jooq.JooqTest
 import org.springframework.context.annotation.Import

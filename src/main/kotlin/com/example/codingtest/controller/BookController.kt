@@ -1,10 +1,9 @@
 package com.example.codingtest.controller
 
-import com.example.codingtest.domain.exception.InvalidPublishUpdatedException
+import com.example.codingtest.common.exception.InvalidPublishUpdatedException
 import com.example.codingtest.domain.model.request.InsertBookRequest
 import com.example.codingtest.domain.model.request.UpdateBookRequest
 import com.example.codingtest.domain.service.BookService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.BindingResult
 import org.springframework.validation.annotation.Validated

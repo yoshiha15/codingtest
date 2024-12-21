@@ -3,7 +3,7 @@ package com.example.codingtest.domain.repository
 import com.example.codingtest.domain.jooq.tables.Author
 import com.example.codingtest.domain.model.dto.AuthorDto
 import com.example.codingtest.domain.model.dto.BookDto
-import com.example.codingtest.util.DateUtils
+import com.example.codingtest.common.util.DateUtils
 import org.jooq.DSLContext
 import org.jooq.Record
 import org.springframework.beans.factory.annotation.Autowired

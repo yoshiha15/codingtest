@@ -1,4 +1,4 @@
-package com.example.codingtest.util
+package com.example.codingtest.common.util
 
 import java.time.LocalDate
 import java.time.LocalDateTime
