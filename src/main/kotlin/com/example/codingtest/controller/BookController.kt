@@ -1,6 +1,7 @@
 package com.example.codingtest.controller
 
 import com.example.codingtest.common.exception.InvalidPublishUpdatedException
+import com.example.codingtest.common.exception.NotFoundException
 import com.example.codingtest.domain.model.request.InsertBookRequest
 import com.example.codingtest.domain.model.request.UpdateBookRequest
 import com.example.codingtest.domain.service.BookService
@@ -18,10 +19,10 @@ class BookController(
 ) {
 
     /**
-     * 著者登録
+     * 書籍登録
      */
     @PostMapping("/book")
-    fun insertAuthor(@RequestBody @Validated insertBookRequest: InsertBookRequest,
+    fun insertBook(@RequestBody @Validated insertBookRequest: InsertBookRequest,
                      bindingResult: BindingResult
     ): ResponseEntity<Unit>  {
 
@@ -35,7 +36,12 @@ class BookController(
             // 書籍登録
             bookService.insertBook(insertBookRequest)
             return ResponseEntity.ok().build()
+        } catch(e: NotFoundException) {
+            // 対照が存在しない場合
+            // http status 404
+            ResponseEntity.notFound().build()
         } catch (e: Exception) {
+            // システムエラー
             // http status 500
             ResponseEntity.internalServerError().build()
         }
@@ -56,11 +62,16 @@ class BookController(
             // 著者更新
             bookService.updateBook(updateBookRequest)
             return ResponseEntity.ok().build()
+        } catch(e: NotFoundException) {
+            // 対照が存在しない場合
+            // http status 404
+            ResponseEntity.notFound().build()
         } catch(e: InvalidPublishUpdatedException) {
             // 出版済みステータスの書籍.出版状況を未出版に更新しようとした場合
             // http status 400
             ResponseEntity.badRequest().build()
         } catch (e: Exception) {
+            // システムエラー
             // http status 500
             ResponseEntity.internalServerError().build()
         }

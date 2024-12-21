@@ -1,5 +1,6 @@
 package com.example.codingtest.domain.repository
 
+import com.example.codingtest.common.exception.NotFoundException
 import com.example.codingtest.domain.jooq.tables.Author
 import com.example.codingtest.domain.model.dto.AuthorDto
 import com.example.codingtest.domain.model.dto.BookDto
@@ -22,7 +23,10 @@ class AuthorRepositoryImpl(
         )
             .from(Author.AUTHOR)
             .where(Author.AUTHOR.ID.eq(authorId))
-            .fetchSingle()
+            .fetchOptional()
+            .orElseThrow {
+                throw NotFoundException()
+            }
 
         return result.map {
             AuthorDto(
@@ -55,11 +59,16 @@ class AuthorRepositoryImpl(
         // 現在日時取得
         val nowDateTime: String = DateUtils.nowDateTime()
 
-        dslContext.update(Author.AUTHOR)
+        val result: Int = dslContext.update(Author.AUTHOR)
             .set(Author.AUTHOR.NAME, name)
             .set(Author.AUTHOR.BIRTHDAY,birthday)
             .set(Author.AUTHOR.UPDATED, nowDateTime)
             .where(Author.AUTHOR.ID.eq(id))
             .execute()
+
+        // 更新対照が0件の場合はNotFoundException
+        if (result == 0) {
+            throw NotFoundException()
+        }
     }
 }

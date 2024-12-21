@@ -2,6 +2,7 @@ package com.example.codingtest.domain.repository
 
 import com.example.codingtest.domain.enum.Publish
 import com.example.codingtest.common.exception.InvalidPublishUpdatedException
+import com.example.codingtest.common.exception.NotFoundException
 import com.example.codingtest.domain.jooq.tables.Book
 import com.example.codingtest.domain.model.dto.BookDto
 import com.example.codingtest.common.util.DateUtils
@@ -53,7 +54,7 @@ class BookRepositoryImpl(
             .returningResult(Book.BOOK.ID)
             .fetchOne()
 
-        // null（登録失敗）の場合はエラー
+        // null（登録失敗）の場合はシステムエラー
         insertedBookId ?: throw RuntimeException()
 
         return insertedBookId.getValue(Book.BOOK.ID)
@@ -74,12 +75,17 @@ class BookRepositoryImpl(
             throw InvalidPublishUpdatedException()
         }
 
-        dslContext.update(Book.BOOK)
+        val result: Int = dslContext.update(Book.BOOK)
             .set(Book.BOOK.TITLE, bookDto.title)
             .set(Book.BOOK.PRICE, bookDto.price)
             .set(Book.BOOK.PUBLISH, bookDto.publish)
             .set(Book.BOOK.UPDATED, nowDateTime)
             .where(Book.BOOK.ID.eq(bookDto.bookId))
             .execute()
+
+        // 更新対照が0件の場合はNotFoundException
+        if (result == 0) {
+            throw NotFoundException()
+        }
     }
 }

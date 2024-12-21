@@ -1,5 +1,6 @@
 package com.example.codingtest.controller
 
+import com.example.codingtest.common.exception.NotFoundException
 import com.example.codingtest.domain.model.response.GetAuthorResponse
 import com.example.codingtest.domain.model.request.InsertAuthorRequest
 import com.example.codingtest.domain.model.request.UpdateAuthorRequest
@@ -31,8 +32,13 @@ class AuthorController(
 
         return try {
             ResponseEntity.ok(authorService.getAuthor(id))
+        } catch (e: NotFoundException) {
+            // 対照が存在しない場合
+            // http status 404
+            ResponseEntity.notFound().build()
         } catch (e: Exception) {
-            // 500
+            // システムエラー
+            // http status 500
             ResponseEntity.internalServerError().build()
         }
     }
@@ -54,6 +60,7 @@ class AuthorController(
             authorService.insertAuthor(insertAuthorRequest)
             return ResponseEntity.ok().build()
         } catch (e: Exception) {
+            // システムエラー
             // http status 500
             ResponseEntity.internalServerError().build()
         }
@@ -74,7 +81,12 @@ class AuthorController(
             // 著者更新
             authorService.updateAuthor(updateAuthorRequest)
             return ResponseEntity.ok().build()
+        } catch (e: NotFoundException) {
+            // 対照が存在しない場合
+            // http status 404
+            ResponseEntity.notFound().build()
         } catch (e: Exception) {
+            // システムエラー
             // http status 500
             ResponseEntity.internalServerError().build()
         }

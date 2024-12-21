@@ -6,12 +6,8 @@ import com.example.codingtest.domain.model.request.UpdateAuthorRequest
 import com.example.codingtest.domain.repository.AuthorBooksRepository
 import com.example.codingtest.domain.repository.AuthorRepository
 import com.example.codingtest.domain.repository.BookRepository
-import com.example.codingtest.domain.jooq.tables.Author
-import com.example.codingtest.domain.jooq.tables.Book
 import com.example.codingtest.domain.model.dto.AuthorDto
 import com.example.codingtest.domain.model.dto.BookDto
-import org.jooq.Record
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
@@ -30,7 +26,7 @@ class AuthorServiceImpl(
         val bookIds: List<Int> = authorBooksRepository.getBookIds(authorId)
 
         // 書籍情報を取得
-        val books = bookRepository.getBooks(bookIds)
+        val books: List<BookDto> = bookRepository.getBooks(bookIds)
 
         return GetAuthorResponse(
             authorId = author.authorId,

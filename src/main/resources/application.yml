@@ -11,3 +11,5 @@ spring:
     username: testuser
     password: password
     driver-class-name: org.postgresql.Driver
+    hikari:
+      auto-commit: false
