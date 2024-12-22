@@ -12,11 +12,10 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.whenever
-import org.springframework.beans.factory.annotation.Autowired
 import kotlin.test.assertEquals
 
 @ExtendWith(MockitoExtension::class)
-class AuthorServiceImplTest{
+class AuthorServiceImplTests{
 
     @InjectMocks
     lateinit var authorServiceImpl: AuthorServiceImpl

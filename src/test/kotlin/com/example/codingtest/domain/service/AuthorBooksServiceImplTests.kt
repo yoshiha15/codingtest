@@ -11,7 +11,7 @@ import org.mockito.kotlin.whenever
 import kotlin.test.assertEquals
 
 @ExtendWith(MockitoExtension::class)
-class AuthorBooksServiceImplTest {
+class AuthorBooksServiceImplTests {
 
     @InjectMocks
     lateinit var authorBooksServiceImpl: AuthorBooksServiceImpl

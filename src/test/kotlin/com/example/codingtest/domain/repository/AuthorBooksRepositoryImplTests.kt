@@ -12,7 +12,7 @@ import kotlin.test.assertEquals
 @Import(TestContainersConfiguration::class, AuthorBooksRepositoryImpl::class)
 @JooqTest
 @Sql("/test-data.sql")
-class AuthorBooksRepositoryImplTest {
+class AuthorBooksRepositoryImplTests {
 
     @Autowired
     lateinit var authorBooksRepositoryImpl: AuthorBooksRepositoryImpl

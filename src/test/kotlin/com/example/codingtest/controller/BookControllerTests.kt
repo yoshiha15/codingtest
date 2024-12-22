@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import kotlin.test.Test
 
 @WebMvcTest(BookController::class)
-class BookControllerTest {
+class BookControllerTests {
 
     @Autowired
     lateinit var mockMvc: MockMvc
