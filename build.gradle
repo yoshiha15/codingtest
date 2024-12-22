@@ -71,7 +71,8 @@ jooq {
 			}
 
 			target {
-				packageName = "com.example.codingtest.domain"
+				packageName = "com.example.codingtest.domain.jooq"
+				directory = "src/main/kotlin"
 			}
 		}
 	}

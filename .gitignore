@@ -38,3 +38,6 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+# jooq generated file
+src/main/kotlin/com/example/codingtest/domain/jooq/

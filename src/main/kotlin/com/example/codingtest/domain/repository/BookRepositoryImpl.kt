@@ -3,9 +3,9 @@ package com.example.codingtest.domain.repository
 import com.example.codingtest.domain.enum.Publish
 import com.example.codingtest.common.exception.InvalidPublishUpdatedException
 import com.example.codingtest.common.exception.NotFoundException
-import com.example.codingtest.domain.jooq.tables.Book
 import com.example.codingtest.domain.model.dto.BookDto
 import com.example.codingtest.common.util.DateUtils
+import com.example.codingtest.domain.tables.Book
 import org.jooq.DSLContext
 import org.jooq.Record
 import org.jooq.Record1

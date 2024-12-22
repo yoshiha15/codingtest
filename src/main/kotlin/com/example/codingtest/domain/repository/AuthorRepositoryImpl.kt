@@ -1,13 +1,11 @@
 package com.example.codingtest.domain.repository
 
 import com.example.codingtest.common.exception.NotFoundException
-import com.example.codingtest.domain.jooq.tables.Author
 import com.example.codingtest.domain.model.dto.AuthorDto
-import com.example.codingtest.domain.model.dto.BookDto
 import com.example.codingtest.common.util.DateUtils
+import com.example.codingtest.domain.tables.Author
 import org.jooq.DSLContext
 import org.jooq.Record
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
 @Repository

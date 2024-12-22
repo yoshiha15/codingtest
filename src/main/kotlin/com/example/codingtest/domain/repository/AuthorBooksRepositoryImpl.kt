@@ -1,9 +1,9 @@
 package com.example.codingtest.domain.repository
 
 import com.example.codingtest.domain.model.dto.AuthorBooksDto
-import com.example.codingtest.domain.jooq.tables.Author
-import com.example.codingtest.domain.jooq.tables.AuthorBooks
-import com.example.codingtest.domain.jooq.tables.Book
+import com.example.codingtest.domain.tables.Author
+import com.example.codingtest.domain.tables.AuthorBooks
+import com.example.codingtest.domain.tables.Book
 import org.jooq.DSLContext
 import org.jooq.Record
 import org.springframework.beans.factory.annotation.Autowired
