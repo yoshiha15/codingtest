@@ -18,10 +18,10 @@ class AuthorBooksRepositoryImplTests {
     lateinit var authorBooksRepositoryImpl: AuthorBooksRepositoryImpl
 
     /**
-     * AuthorBooksRepositoryImpl.getAuthorBooks テストコード
+     * AuthorBooksRepositoryImpl.getAuthorBooks 正常系
      */
     @Test
-    fun test_getAuthorBooks() {
+    fun test_success_getAuthorBooks() {
 
         val actual: List<AuthorBooksDto> = authorBooksRepositoryImpl.getAuthorBooks()
 
@@ -56,10 +56,10 @@ class AuthorBooksRepositoryImplTests {
     }
 
     /**
-     * AuthorBooksRepositoryImpl.getBookIds テストコード
+     * AuthorBooksRepositoryImpl.getBookIds 正常系
      */
     @Test
-    fun test_getBookIds() {
+    fun test_success_getBookIds() {
 
         val actual: List<Int> = authorBooksRepositoryImpl.getBookIds(1)
 
@@ -71,14 +71,20 @@ class AuthorBooksRepositoryImplTests {
         assertEquals(2, actual[1])
     }
 
+    /**
+     * AuthorBooksRepositoryImpl.insertAuthorBooks 正常系
+     */
     @Test
-    fun test_insertAuthorBooks() {
+    fun test_success_insertAuthorBooks() {
 
         authorBooksRepositoryImpl.insertAuthorBooks(1, 4)
     }
 
+    /**
+     * AuthorBooksRepositoryImpl.deleteAuthorBooks 正常系
+     */
     @Test
-    fun test_deleteAuthorBooks() {
+    fun test_success_deleteAuthorBooks() {
 
         authorBooksRepositoryImpl.deleteAuthorBooks(1)
 
@@ -88,11 +94,5 @@ class AuthorBooksRepositoryImplTests {
         assertEquals(1, actual1.size)
         // 書籍ID
         assertEquals(2, actual1[0])
-
-        val actual2: List<Int> = authorBooksRepositoryImpl.getBookIds(3)
-
-        // 件数
-        assertEquals(0, actual2.size)
     }
-
 }

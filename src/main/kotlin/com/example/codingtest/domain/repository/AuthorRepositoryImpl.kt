@@ -21,6 +21,7 @@ class AuthorRepositoryImpl(
         )
             .from(Author.AUTHOR)
             .where(Author.AUTHOR.ID.eq(authorId))
+            .orderBy(Author.AUTHOR.ID)
             .fetchOptional()
             .orElseThrow {
                 throw NotFoundException()

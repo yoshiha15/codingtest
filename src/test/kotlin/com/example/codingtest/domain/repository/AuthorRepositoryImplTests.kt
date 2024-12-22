@@ -1,8 +1,10 @@
 package com.example.codingtest.domain.repository
 
+import com.example.codingtest.common.exception.NotFoundException
 import com.example.codingtest.config.TestContainersConfiguration
 import com.example.codingtest.domain.model.dto.AuthorDto
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.jooq.JooqTest
 import org.springframework.context.annotation.Import
@@ -18,10 +20,10 @@ class AuthorRepositoryImplTests {
     lateinit var authorRepositoryImpl: AuthorRepositoryImpl
 
     /**
-     * AuthorRepositoryImpl.getAuthor テストコード
+     * AuthorRepositoryImpl.getAuthor 正常系
      */
     @Test
-    fun test_getAuthor() {
+    fun test_success_getAuthor() {
 
         // 著者1
         val actual1: AuthorDto = authorRepositoryImpl.getAuthor(1)
@@ -39,10 +41,23 @@ class AuthorRepositoryImplTests {
     }
 
     /**
-     * AuthorRepositoryImpl.insertAuthor テストコード
+     * AuthorRepositoryImpl.getAuthor 異常系 NotFoundException
      */
     @Test
-    fun test_insertAuthor() {
+    fun test_failure_NotFoundException_getAuthor() {
+
+        assertThrows<NotFoundException> {
+            // 存在しないauthorIdを指定
+            val actual1: AuthorDto = authorRepositoryImpl.getAuthor(999)
+        }
+    }
+
+
+    /**
+     * AuthorRepositoryImpl.insertAuthor 正常系
+     */
+    @Test
+    fun test_success_insertAuthor() {
         // 著者3
         authorRepositoryImpl.insertAuthor("著者3", "20001212")
 
@@ -54,10 +69,10 @@ class AuthorRepositoryImplTests {
     }
 
     /**
-     * AuthorRepositoryImpl.updateAuthor テストコード
+     * AuthorRepositoryImpl.updateAuthor 正常系
      */
     @Test
-    fun test_updateAuthor() {
+    fun test_success_updateAuthor() {
 
         // 著者2
         authorRepositoryImpl.updateAuthor(2, "著者4", "19930101")
@@ -67,5 +82,17 @@ class AuthorRepositoryImplTests {
         assertEquals(2, actual.authorId)
         assertEquals("著者4", actual.name)
         assertEquals("19930101", actual.birthday)
+    }
+
+    /**
+     * AuthorRepositoryImpl.updateAuthor 異常系 NotFoundException
+     */
+    @Test
+    fun test_failure_NotFoundException_updateAuthor() {
+
+        assertThrows<NotFoundException> {
+            // 存在しないauthorIdを指定
+            authorRepositoryImpl.updateAuthor(999, "著者999", "19930101")
+        }
     }
 }
