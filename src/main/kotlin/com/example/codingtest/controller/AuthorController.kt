@@ -29,7 +29,7 @@ class AuthorController(
         return try {
             ResponseEntity.ok(authorService.getAuthor(id))
         } catch (e: NotFoundException) {
-            // 対照が存在しない場合
+            // 対象が存在しない場合
             // http status 404
             ResponseEntity.notFound().build()
         } catch (e: Exception) {
@@ -78,7 +78,7 @@ class AuthorController(
             authorService.updateAuthor(updateAuthorRequest)
             return ResponseEntity.ok().build()
         } catch (e: NotFoundException) {
-            // 対照が存在しない場合
+            // 対象が存在しない場合
             // http status 404
             ResponseEntity.notFound().build()
         } catch (e: Exception) {

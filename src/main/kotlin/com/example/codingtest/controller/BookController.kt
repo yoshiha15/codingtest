@@ -35,7 +35,7 @@ class BookController(
             bookService.insertBook(insertBookRequest)
             return ResponseEntity.ok().build()
         } catch(e: NotFoundException) {
-            // 対照が存在しない場合
+            // 対象が存在しない場合
             // http status 404
             ResponseEntity.notFound().build()
         } catch (e: Exception) {
@@ -61,7 +61,7 @@ class BookController(
             bookService.updateBook(updateBookRequest)
             return ResponseEntity.ok().build()
         } catch(e: NotFoundException) {
-            // 対照が存在しない場合
+            // 対象が存在しない場合
             // http status 404
             ResponseEntity.notFound().build()
         } catch(e: InvalidPublishUpdatedException) {
