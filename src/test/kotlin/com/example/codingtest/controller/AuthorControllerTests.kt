@@ -44,7 +44,7 @@ class AuthorControllerTests {
                     BookDto(
                         bookId = 2,
                         title = "著者1書籍2巻",
-                        price = 425,
+                        price = 0,
                         publish = "0"
                     )
                 )
@@ -62,7 +62,7 @@ class AuthorControllerTests {
             .andExpect(jsonPath("$.books[0].publish").value("1"))
             .andExpect(jsonPath("$.books[1].bookId").value(2))
             .andExpect(jsonPath("$.books[1].title").value("著者1書籍2巻"))
-            .andExpect(jsonPath("$.books[1].price").value(425))
+            .andExpect(jsonPath("$.books[1].price").value(0))
             .andExpect(jsonPath("$.books[1].publish").value("0"))
     }
 
