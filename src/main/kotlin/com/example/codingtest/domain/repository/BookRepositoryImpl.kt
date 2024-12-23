@@ -11,6 +11,9 @@ import org.jooq.Record
 import org.jooq.Record1
 import org.springframework.stereotype.Repository
 
+/**
+ * BookRepositoryImpl
+ */
 @Repository
 class BookRepositoryImpl(
     private val dslContext: DSLContext

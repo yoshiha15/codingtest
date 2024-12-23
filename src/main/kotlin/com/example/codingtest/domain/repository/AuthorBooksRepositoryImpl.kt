@@ -6,9 +6,11 @@ import com.example.codingtest.domain.jooq.tables.AuthorBooks
 import com.example.codingtest.domain.jooq.tables.Book
 import org.jooq.DSLContext
 import org.jooq.Record
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 
+/**
+ * AuthorBooksRepositoryImpl
+ */
 @Repository
 class AuthorBooksRepositoryImpl(
     private val dslContext: DSLContext

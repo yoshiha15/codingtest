@@ -224,7 +224,7 @@ class AuthorControllerTests {
     fun test_success_updateAuthor() {
 
         val updateAuthorRequest = UpdateAuthorRequest(
-            id = 1,
+            authorId = 1,
             name = "著者1",
             birthday = "19750101"
         )
@@ -233,7 +233,7 @@ class AuthorControllerTests {
 
         val requestBody: String = """
             {
-              "id": 1,
+              "authorId": 1,
               "name": "著者1",
               "birthday": "19750101"
             }
@@ -255,7 +255,7 @@ class AuthorControllerTests {
 
         val requestBody: String = """
             {
-              "id": 0,
+              "authorId": 0,
               "name": "著者1",
               "birthday": "19750101"
             }
@@ -277,7 +277,7 @@ class AuthorControllerTests {
 
         val requestBody: String = """
             {
-              "id": 1,
+              "authorId": 1,
               "name": "",
               "birthday": "19750101"
             }
@@ -299,7 +299,7 @@ class AuthorControllerTests {
 
         val requestBody1: String = """
             {
-              "id": 1,
+              "authorId": 1,
               "name": "著者1",
               "birthday": "1975010"
             }
@@ -314,7 +314,7 @@ class AuthorControllerTests {
 
         val requestBody2: String = """
             {
-              "id": 1,
+              "authorId": 1,
               "name": "著者1",
               "birthday": "197501011"
             }
@@ -336,7 +336,7 @@ class AuthorControllerTests {
     fun test_failure_NotFoundException_updateAuthor() {
 
         val updateAuthorRequest = UpdateAuthorRequest(
-            id = 1,
+            authorId = 1,
             name = "著者1",
             birthday = "19750101"
         )
@@ -345,7 +345,7 @@ class AuthorControllerTests {
 
         val requestBody: String = """
             {
-              "id": 1,
+              "authorId": 1,
               "name": "著者1",
               "birthday": "19750101"
             }
@@ -366,7 +366,7 @@ class AuthorControllerTests {
     fun test_failure_RuntimeException_updateAuthor() {
 
         val updateAuthorRequest = UpdateAuthorRequest(
-            id = 1,
+            authorId = 1,
             name = "著者1",
             birthday = "19750101"
         )
@@ -375,7 +375,7 @@ class AuthorControllerTests {
 
         val requestBody: String = """
             {
-              "id": 1,
+              "authorId": 1,
               "name": "著者1",
               "birthday": "19750101"
             }

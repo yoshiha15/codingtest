@@ -4,10 +4,12 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.Size
 
-
+/**
+ * UpdateBookRequest
+ */
 data class UpdateBookRequest(
     @field:Min(1)
-    val id: Int,
+    val bookId: Int,
     @field:NotEmpty
     val title: String,
     @field:Min(0)

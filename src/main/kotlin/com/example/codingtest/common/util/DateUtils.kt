@@ -4,11 +4,15 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+// フォーマット文字列 日時
 const val FORMAT_DATETIME = "yyyyMMddHHmmss"
 
+// フォーマット文字列 日付
 const val FORMAT_DATE = "yyyyMMdd"
 
-
+/**
+ * 日時に関する共通処理
+ */
 class DateUtils {
 
     companion object {

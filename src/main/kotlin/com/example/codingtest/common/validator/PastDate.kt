@@ -5,6 +5,11 @@ import jakarta.validation.Payload
 import jakarta.validation.ReportAsSingleViolation
 import kotlin.reflect.KClass
 
+/**
+ * PastDate
+ * 値が現在日付より過去日であることをチェックするバリデータ用アノテーション
+ * 値のフォーマット: yyyyMMdd
+ */
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 @MustBeDocumented

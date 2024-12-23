@@ -10,6 +10,9 @@ import com.example.codingtest.domain.model.dto.AuthorDto
 import com.example.codingtest.domain.model.dto.BookDto
 import org.springframework.stereotype.Service
 
+/**
+ * AuthorServiceImpl
+ */
 @Service
 class AuthorServiceImpl(
     private val authorRepository: AuthorRepository,
@@ -41,7 +44,7 @@ class AuthorServiceImpl(
     }
 
     override fun updateAuthor(updateAuthorRequest: UpdateAuthorRequest) {
-        authorRepository.updateAuthor(updateAuthorRequest.id, updateAuthorRequest.name, updateAuthorRequest.birthday)
+        authorRepository.updateAuthor(updateAuthorRequest.authorId, updateAuthorRequest.name, updateAuthorRequest.birthday)
     }
 
 }

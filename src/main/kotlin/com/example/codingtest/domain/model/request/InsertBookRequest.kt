@@ -4,7 +4,9 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotEmpty
 import jakarta.validation.constraints.Size
 
-
+/**
+ * InsertBookRequest
+ */
 data class InsertBookRequest(
     @field:NotEmpty
     val title: String,

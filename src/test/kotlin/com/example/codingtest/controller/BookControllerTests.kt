@@ -219,7 +219,7 @@ class BookControllerTests {
     fun test_success_updateBook() {
 
         val updateBookRequest = UpdateBookRequest(
-            id = 1,
+            bookId = 1,
             title = "著者1書籍1巻",
             price = 420,
             publish = "1",
@@ -230,7 +230,7 @@ class BookControllerTests {
 
         val requestBody: String = """
             {
-              "id": 1,
+              "bookId": 1,
               "title": "著者1書籍1巻",
               "price": 420,
               "publish": "1",
@@ -252,7 +252,7 @@ class BookControllerTests {
 
         val requestBody: String = """
             {
-              "id": 0,
+              "bookId": 0,
               "title": "著者1書籍1巻",
               "price": 420,
               "publish": "1",
@@ -274,7 +274,7 @@ class BookControllerTests {
 
         val requestBody: String = """
             {
-              "id": 1,
+              "bookId": 1,
               "title": "",
               "price": 420,
               "publish": "1",
@@ -297,7 +297,7 @@ class BookControllerTests {
 
         val requestBody: String = """
             {
-              "id": 1,
+              "bookId": 1,
               "title": "著者1書籍1巻",
               "price": -1,
               "publish": "1",
@@ -319,7 +319,7 @@ class BookControllerTests {
 
         val requestBody1: String = """
             {
-              "id": 1,
+              "bookId": 1,
               "title": "著者1書籍1巻",
               "price": 420,
               "publish": "",
@@ -334,7 +334,7 @@ class BookControllerTests {
 
         val requestBody2: String = """
             {
-              "id": 1,
+              "bookId": 1,
               "title": "著者1書籍1巻",
               "price": 420,
               "publish": "10",
@@ -355,7 +355,7 @@ class BookControllerTests {
     fun test_failure_NotFoundException_updateBook() {
 
         val updateBookRequest = UpdateBookRequest(
-            id = 1,
+            bookId = 1,
             title = "著者1書籍1巻",
             price = 420,
             publish = "1",
@@ -366,7 +366,7 @@ class BookControllerTests {
 
         val requestBody: String = """
             {
-              "id": 1,
+              "bookId": 1,
               "title": "著者1書籍1巻",
               "price": 420,
               "publish": "1",
@@ -387,7 +387,7 @@ class BookControllerTests {
     fun test_failure_InvalidPublishUpdatedException_updateBook() {
 
         val updateBookRequest = UpdateBookRequest(
-            id = 1,
+            bookId = 1,
             title = "著者1書籍1巻",
             price = 420,
             publish = "1",
@@ -398,7 +398,7 @@ class BookControllerTests {
 
         val requestBody: String = """
             {
-              "id": 1,
+              "bookId": 1,
               "title": "著者1書籍1巻",
               "price": 420,
               "publish": "1",
@@ -419,7 +419,7 @@ class BookControllerTests {
     fun test_failure_RuntimeException_updateBook() {
 
         val updateBookRequest = UpdateBookRequest(
-            id = 1,
+            bookId = 1,
             title = "著者1書籍1巻",
             price = 420,
             publish = "1",
@@ -430,7 +430,7 @@ class BookControllerTests {
 
         val requestBody: String = """
             {
-              "id": 1,
+              "bookId": 1,
               "title": "著者1書籍1巻",
               "price": 420,
               "publish": "1",

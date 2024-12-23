@@ -1,5 +1,8 @@
 package com.example.codingtest.domain.model.dto
 
+/**
+ * AuthorBooksDto
+ */
 data class AuthorBooksDto(
     val authorId: Int,
     val name: String,

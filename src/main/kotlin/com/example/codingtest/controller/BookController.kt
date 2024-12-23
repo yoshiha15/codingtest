@@ -10,6 +10,9 @@ import org.springframework.validation.BindingResult
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 
+/**
+ * BookController
+ */
 @RestController
 @RequestMapping("/api")
 class BookController(
@@ -18,6 +21,15 @@ class BookController(
 
     /**
      * 書籍登録
+     *
+     * @param insertBookRequest
+     *            title      タイトル                  必須  空文字列ではないこと
+     *            price      価格                     必須  0以上であること
+     *            publish    出版状況                  必須  1文字であること
+     *            authorIds  書籍に紐づく著者IDのリスト  必須  1件以上、登録済みの著者IDであること
+     *
+     * @return なし
+     *
      */
     @PostMapping("/book")
     fun insertBook(@RequestBody @Validated insertBookRequest: InsertBookRequest,
@@ -47,6 +59,16 @@ class BookController(
 
     /**
      * 書籍更新
+     *
+     * @param updateBookRequest
+     *            bookId     書籍ID                   必須  1以上であること
+     *            title      タイトル                  必須  空文字列ではないこと
+     *            price      価格                     必須  0以上であること
+     *            publish    出版状況                  必須  1文字であること
+     *            authorIds  書籍に紐づく著者IDのリスト  必須  1件以上、登録済みの著者IDであること
+     *
+     * @return なし
+     *
      */
     @PatchMapping("/book")
     fun updateBook(@RequestBody @Validated updateBookRequest: UpdateBookRequest, bindingResult: BindingResult): ResponseEntity<Unit> {

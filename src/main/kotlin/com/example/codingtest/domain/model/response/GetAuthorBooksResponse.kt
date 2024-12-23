@@ -1,5 +1,8 @@
 package com.example.codingtest.domain.model.response
 
+/**
+ * GetAuthorBooksResponse
+ */
 data class GetAuthorBooksResponse(
     val authorId: Int,
     val name: String,

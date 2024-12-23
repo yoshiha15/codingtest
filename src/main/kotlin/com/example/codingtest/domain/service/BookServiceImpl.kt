@@ -7,10 +7,11 @@ import com.example.codingtest.domain.repository.AuthorBooksRepository
 import com.example.codingtest.domain.repository.AuthorRepository
 import com.example.codingtest.domain.repository.BookRepository
 import org.jooq.DSLContext
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 
+/**
+ * BookServiceImpl
+ */
 @Service
 class BookServiceImpl(
     private val authorBooksRepository: AuthorBooksRepository,
@@ -53,7 +54,7 @@ class BookServiceImpl(
             // 書籍情報更新　
             bookRepository.updateBook(
                 BookDto(
-                    bookId = bookUpdateRequest.id,
+                    bookId = bookUpdateRequest.bookId,
                     title = bookUpdateRequest.title,
                     price = bookUpdateRequest.price,
                     publish = bookUpdateRequest.publish,
@@ -61,13 +62,13 @@ class BookServiceImpl(
             )
 
             // 書籍IDに紐つく書籍・著者情報を削除後に再登録
-            authorBooksRepository.deleteAuthorBooks(bookUpdateRequest.id)
+            authorBooksRepository.deleteAuthorBooks(bookUpdateRequest.bookId)
             for (authorId in bookUpdateRequest.authorIds) {
 
                 // 指定した著者IDが存在していることのチェック 存在していない場合はNotFoundExceptionをthrow
                 authorRepository.getAuthor(authorId)
 
-                authorBooksRepository.insertAuthorBooks(authorId, bookUpdateRequest.id)
+                authorBooksRepository.insertAuthorBooks(authorId, bookUpdateRequest.bookId)
             }
         }
     }

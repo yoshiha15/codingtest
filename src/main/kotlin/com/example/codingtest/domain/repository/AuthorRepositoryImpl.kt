@@ -8,6 +8,9 @@ import org.jooq.DSLContext
 import org.jooq.Record
 import org.springframework.stereotype.Repository
 
+/**
+ * AuthorRepositoryImpl
+ */
 @Repository
 class AuthorRepositoryImpl(
     private val dslContext: DSLContext
