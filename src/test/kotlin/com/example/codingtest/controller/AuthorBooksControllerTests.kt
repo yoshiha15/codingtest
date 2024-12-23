@@ -51,7 +51,7 @@ class AuthorBooksControllerTests {
             )
         )
 
-        mockMvc.perform(get("/api/author-books").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/author-books-ids").contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk) // 200
             .andExpect(jsonPath("$.[0].authorId").value(1))
             .andExpect(jsonPath("$.[0].name").value("著者1"))
@@ -77,7 +77,7 @@ class AuthorBooksControllerTests {
 
         whenever(authorBooksService.getAuthorBooks()).thenThrow(RuntimeException::class.java)
 
-        mockMvc.perform(get("/api/author-books").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/api/author-books-ids").contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isInternalServerError) // 500
     }
 }

@@ -20,8 +20,8 @@ class AuthorBooksController(
      * DBに格納されている著者・書籍の情報を一覧で取得する
      * ※課題範囲外だがDBから取得・更新に必要なidを取得するために実装
      */
-    @GetMapping("/author-books")
-    fun getAuthorBooks(): ResponseEntity<List<GetAuthorBooksResponse>>  {
+    @GetMapping("/author-books-ids")
+    fun getAuthorBooksIds(): ResponseEntity<List<GetAuthorBooksResponse>>  {
 
         return try {
             val getAuthorBooksResponse = authorBooksService.getAuthorBooks().map {
