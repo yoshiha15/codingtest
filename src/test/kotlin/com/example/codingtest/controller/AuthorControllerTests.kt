@@ -26,6 +26,9 @@ class AuthorControllerTests {
     @MockitoBean
     lateinit var authorService: AuthorService
 
+    /**
+     * AuthorController.getAuthor 正常系
+     */
     @Test
     fun test_success_getAuthor() {
 
@@ -66,13 +69,19 @@ class AuthorControllerTests {
             .andExpect(jsonPath("$.books[1].publish").value("0"))
     }
 
+    /**
+     * AuthorController.getAuthor 異常系　pathParameter不正
+     */
     @Test
-    fun test_failure_InvalidPathParameter_getAuthor() {
+    fun test_failure_request_pathParameter_getAuthor() {
 
         mockMvc.perform(get("/api/author/0").contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isBadRequest) // 400
     }
 
+    /**
+     * AuthorController.getAuthor 異常系　InvalidPathParameter
+     */
     @Test
     fun test_failure_NotFoundException_getAuthor() {
 
@@ -82,6 +91,9 @@ class AuthorControllerTests {
             .andExpect(status().isNotFound) // 404
     }
 
+    /**
+     * AuthorController.getAuthor 異常系 RuntimeException
+     */
     @Test
     fun test_failure_RuntimeException_getAuthor() {
 
@@ -91,6 +103,9 @@ class AuthorControllerTests {
             .andExpect(status().isInternalServerError) // 500
     }
 
+    /**
+     * AuthorController.insertAuthor 正常系
+     */
     @Test
     fun test_success_insertAuthor() {
 
@@ -116,6 +131,9 @@ class AuthorControllerTests {
             .andExpect(status().isOk)
     }
 
+    /**
+     * AuthorController.insertAuthor 異常系 request.name不正
+     */
     @Test
     fun test_failure_request_name_insertAuthor() {
 
@@ -134,6 +152,9 @@ class AuthorControllerTests {
             .andExpect(status().isBadRequest)
     }
 
+    /**
+     * AuthorController.insertAuthor 異常系 request.birthday不正
+     */
     @Test
     fun test_failure_request_birthday_insertAuthor() {
 
@@ -168,6 +189,9 @@ class AuthorControllerTests {
             .andExpect(status().isBadRequest)
     }
 
+    /**
+     * AuthorController.insertAuthor 異常系 RuntimeException発生
+     */
     @Test
     fun test_failure_RuntimeException_insertAuthor() {
 
@@ -193,6 +217,9 @@ class AuthorControllerTests {
             .andExpect(status().isInternalServerError)
     }
 
+    /**
+     * AuthorController.updateAuthor 正常系
+     */
     @Test
     fun test_success_updateAuthor() {
 
@@ -220,6 +247,9 @@ class AuthorControllerTests {
             .andExpect(status().isOk)
     }
 
+    /**
+     * AuthorController.updateAuthor 異常系　request.id不正
+     */
     @Test
     fun test_failure_request_id_updateAuthor() {
 
@@ -239,6 +269,9 @@ class AuthorControllerTests {
             .andExpect(status().isBadRequest)
     }
 
+    /**
+     * AuthorController.updateAuthor 異常系　request.name不正
+     */
     @Test
     fun test_failure_request_name_updateAuthor() {
 
@@ -258,6 +291,9 @@ class AuthorControllerTests {
             .andExpect(status().isBadRequest)
     }
 
+    /**
+     * AuthorController.updateAuthor 異常系　request.birthday不正
+     */
     @Test
     fun test_failure_request_birthday_updateAuthor() {
 
@@ -293,6 +329,9 @@ class AuthorControllerTests {
 
     }
 
+    /**
+     * AuthorController.updateAuthor 異常系　NotFoundException
+     */
     @Test
     fun test_failure_NotFoundException_updateAuthor() {
 
@@ -320,6 +359,9 @@ class AuthorControllerTests {
             .andExpect(status().isNotFound)
     }
 
+    /**
+     * AuthorController.updateAuthor 異常系　RuntimeException
+     */
     @Test
     fun test_failure_RuntimeException_updateAuthor() {
 

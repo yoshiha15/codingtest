@@ -24,6 +24,9 @@ class BookControllerTests {
     @MockitoBean
     lateinit var bookService: BookService
 
+    /**
+     * AuthorController.insertBook 正常系
+     */
     @Test
     fun test_success_insertBook() {
 
@@ -51,6 +54,9 @@ class BookControllerTests {
             .andExpect(status().isOk) // 200
     }
 
+    /**
+     * AuthorController.insertBook 異常系 request.name不正
+     */
     @Test
     fun test_failure_request_name_insertBook() {
 
@@ -69,6 +75,9 @@ class BookControllerTests {
             .andExpect(status().isBadRequest) // 400
     }
 
+    /**
+     * AuthorController.insertBook 異常系 request.title不正
+     */
     @Test
     fun test_failure_request_title_insertBook() {
 
@@ -87,6 +96,9 @@ class BookControllerTests {
             .andExpect(status().isBadRequest) // 400
     }
 
+    /**
+     * AuthorController.insertBook 異常系 request.publish不正
+     */
     @Test
     fun test_failure_request_publish_insertBook() {
 
@@ -119,6 +131,9 @@ class BookControllerTests {
             .andExpect(status().isBadRequest) // 400
     }
 
+    /**
+     * AuthorController.insertBook 異常系 request.authorIds不正
+     */
     @Test
     fun test_failure_request_authorIds_insertBook() {
 
@@ -137,6 +152,9 @@ class BookControllerTests {
             .andExpect(status().isBadRequest) // 400
     }
 
+    /**
+     * AuthorController.insertBook 異常系 NotFoundException
+     */
     @Test
     fun test_failure_NotFoundException_insertBook() {
 
@@ -164,6 +182,9 @@ class BookControllerTests {
             .andExpect(status().isNotFound) // 404
     }
 
+    /**
+     * AuthorController.insertBook 異常系 RuntimeException
+     */
     @Test
     fun test_failure_RuntimeException_insertBook() {
 
@@ -191,6 +212,9 @@ class BookControllerTests {
             .andExpect(status().isInternalServerError) // 500
     }
 
+    /**
+     * AuthorController.updateBook 正常系
+     */
     @Test
     fun test_success_updateBook() {
 
@@ -220,6 +244,9 @@ class BookControllerTests {
             .andExpect(status().isOk) // 200
     }
 
+    /**
+     * AuthorController.updateBook 異常系 request.id不正
+     */
     @Test
     fun test_failure_request_id_updateBook() {
 
@@ -239,6 +266,9 @@ class BookControllerTests {
             .andExpect(status().isBadRequest) // 400
     }
 
+    /**
+     * AuthorController.updateBook 異常系 request.title不正
+     */
     @Test
     fun test_failure_request_title_updateBook() {
 
@@ -259,6 +289,9 @@ class BookControllerTests {
 
     }
 
+    /**
+     * AuthorController.updateBook 異常系 request.price不正
+     */
     @Test
     fun test_failure_request_price_updateBook() {
 
@@ -278,6 +311,9 @@ class BookControllerTests {
             .andExpect(status().isBadRequest) // 400
     }
 
+    /**
+     * AuthorController.updateBook 異常系 request.publish不正
+     */
     @Test
     fun test_failure_request_publish_updateBook() {
 
@@ -312,6 +348,9 @@ class BookControllerTests {
             .andExpect(status().isBadRequest) // 400
     }
 
+    /**
+     * AuthorController.updateBook 異常系 NotFoundException
+     */
     @Test
     fun test_failure_NotFoundException_updateBook() {
 
@@ -341,6 +380,9 @@ class BookControllerTests {
             .andExpect(status().isNotFound) // 404
     }
 
+    /**
+     * AuthorController.updateBook 異常系 InvalidPublishUpdatedException
+     */
     @Test
     fun test_failure_InvalidPublishUpdatedException_updateBook() {
 
@@ -370,6 +412,9 @@ class BookControllerTests {
             .andExpect(status().isBadRequest) // 400
     }
 
+    /**
+     * AuthorController.updateBook 異常系 RuntimeException
+     */
     @Test
     fun test_failure_RuntimeException_updateBook() {
 

@@ -22,6 +22,9 @@ class AuthorBooksControllerTests {
     @MockitoBean
     lateinit var authorBooksService: AuthorBooksService
 
+    /**
+     * AuthorBooksController.getAuthorBooks 正常系
+     */
     @Test
     fun test_success_getAuthorBooks() {
 
@@ -66,6 +69,9 @@ class AuthorBooksControllerTests {
             .andExpect(jsonPath("$.[1].publish").value("1"))
     }
 
+    /**
+     * AuthorBooksController.getAuthorBooks 異常系 RuntimeException
+     */
     @Test
     fun test_failure_RuntimeException_getAuthorBooks() {
 

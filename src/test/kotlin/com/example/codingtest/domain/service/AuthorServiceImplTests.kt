@@ -30,10 +30,10 @@ class AuthorServiceImplTests{
     lateinit var bookRepository: BookRepository
 
     /**
-     * authorServiceImpl.getAuthor テストコード
+     * authorServiceImpl.getAuthor 正常系
      */
     @Test
-    fun test_getAuthor() {
+    fun test_success_getAuthor() {
 
         whenever(authorRepository.getAuthor(1)).thenReturn(
             AuthorDto(

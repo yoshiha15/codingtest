@@ -20,10 +20,10 @@ class AuthorBooksServiceImplTests {
     lateinit var authorBooksRepository: AuthorBooksRepository
 
     /**
-     * authorBooksServiceImpl.getAuthorBooks テストコード
+     * authorBooksServiceImpl.getAuthorBooks 正常系
      */
     @Test
-    fun test_getAuthorBooks() {
+    fun test_success_getAuthorBooks() {
 
         // スタブ登録
         whenever(authorBooksRepository.getAuthorBooks()).thenReturn(
