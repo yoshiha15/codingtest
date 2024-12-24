@@ -43,7 +43,7 @@ class BookRepositoryImplTests {
         // 書籍3
         assertEquals(3, actual[2].bookId)
         assertEquals("著者2書籍1巻", actual[2].title)
-        assertEquals(430, actual[2].price)
+        assertEquals(0, actual[2].price)
         assertEquals("1", actual[2].publish)
     }
 

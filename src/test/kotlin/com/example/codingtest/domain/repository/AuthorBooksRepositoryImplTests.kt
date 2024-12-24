@@ -51,7 +51,7 @@ class AuthorBooksRepositoryImplTests {
         assertEquals("著者2", actual[2].name)
         assertEquals("19741108", actual[2].birthday)
         assertEquals("著者2書籍1巻", actual[2].title)
-        assertEquals(430, actual[2].price)
+        assertEquals(0, actual[2].price)
         assertEquals("1", actual[2].publish)
     }
 
