@@ -1,9 +1,16 @@
+buildscript {
+	dependencies {
+		classpath("org.flywaydb:flyway-database-postgresql:11.1.0")
+	}
+}
+
 plugins {
 	id 'org.jetbrains.kotlin.jvm' version '1.9.25'
 	id 'org.jetbrains.kotlin.plugin.spring' version '1.9.25'
 	id 'org.springframework.boot' version '3.4.0'
 	id 'io.spring.dependency-management' version '1.1.6'
 	id "org.jooq.jooq-codegen-gradle" version "3.19.16"
+	id "org.flywaydb.flyway" version "11.1.0"
 }
 
 group = 'com.example'
@@ -78,6 +85,13 @@ jooq {
 	}
 }
 
+flyway {
+	url = 'jdbc:postgresql://localhost:5432/codingtestdb'
+	user = 'testuser'
+	password = 'password'
+	locations = ['classpath:db/migration', 'classpath:db/mock-data']
+	cleanDisabled = false
+}
 
 
 tasks.named('bootRun') {
