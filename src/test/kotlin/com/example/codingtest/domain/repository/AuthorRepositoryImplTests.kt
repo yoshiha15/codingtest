@@ -48,7 +48,7 @@ class AuthorRepositoryImplTests {
 
         assertThrows<NotFoundException> {
             // 存在しないauthorIdを指定
-            val actual1: AuthorDto = authorRepositoryImpl.getAuthor(999)
+            authorRepositoryImpl.getAuthor(999)
         }
     }
 
