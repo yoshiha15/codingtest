@@ -50,5 +50,4 @@ class AuthorBooksServiceImplTests {
         assertEquals(420, actual[0].price)
         assertEquals("1", actual[0].publish)
     }
-
 }

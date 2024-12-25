@@ -145,5 +145,4 @@ class BookRepositoryImplTests {
             bookRepositoryImpl.updateBook(bookDto)
         }
     }
-
 }
