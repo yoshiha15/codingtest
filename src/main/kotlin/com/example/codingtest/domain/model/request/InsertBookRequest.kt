@@ -17,4 +17,3 @@ data class InsertBookRequest(
     @field:NotEmpty
     val authorIds: List<Int>
 )
-

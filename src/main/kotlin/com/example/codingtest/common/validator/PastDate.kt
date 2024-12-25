@@ -20,4 +20,3 @@ annotation class PastDate(
     val groups: Array<KClass<out Any>> = [],
     val payload: Array<KClass<out Payload>> = []
 )
-
