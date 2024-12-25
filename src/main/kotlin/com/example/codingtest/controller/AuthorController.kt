@@ -30,17 +30,17 @@ class AuthorController(
      *             birthday  誕生日
      *             books     書籍
      */
-    @GetMapping("/author/{id}")
-    fun getAuthor(@PathVariable("id") id: Int): ResponseEntity<GetAuthorResponse>{
+    @GetMapping("/author/{authorId}")
+    fun getAuthor(@PathVariable("authorId") authorId: Int): ResponseEntity<GetAuthorResponse>{
 
         // パスパラメータに指定した著者IDが0以下であればエラー
-        if (id < 1) {
+        if (authorId < 1) {
             // http status 400
             return ResponseEntity.badRequest().build()
         }
 
         return try {
-            ResponseEntity.ok(authorService.getAuthor(id))
+            ResponseEntity.ok(authorService.getAuthor(authorId))
         } catch (e: NotFoundException) {
             // 対象が存在しない場合
             // http status 404

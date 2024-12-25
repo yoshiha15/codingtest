@@ -19,7 +19,6 @@ class AuthorBooksController(
     /**
      * 著者・書籍 ID取得用API
      * DBに格納されている著者・書籍の情報を一覧で取得する
-     * ※ 課題範囲外だがDBから取得・更新に必要なidを取得するために実装
      *
      * @param
      *
